@@ -1,0 +1,9 @@
+settings:
+  gcp_project: ygrene
+
+actions:
+  simple_query:
+    type: query
+    sql_file: simple_query
+
+flows:
