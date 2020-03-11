@@ -1,1 +1,3 @@
-select * from ygrene.edw.yoda_projects
+select
+  *
+from `bigquery-public-data.census_utility.fips_codes_states`

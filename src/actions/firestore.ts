@@ -9,21 +9,21 @@ import {
   NumberParam
 } from '../flow-action'
 
-interface IQuerySpec extends IActionSpec {
+interface IFirestoreSpec extends IActionSpec {
   /** Parameters for a Query Action */
   parameters: {
     /** The SQL string */
-    sql: IActionStringParam
+    doc: IActionStringParam
     limit: IActionNumberParam
   }
 }
 
-const QuerySpec: IQuerySpec = {
+const FirestoreSpec: IFirestoreSpec = {
   acceptsRecords: false,
   producesRecords: true,
   parameters: {
-    sql: {
-      description: 'The SQL query to execute',
+    doc: {
+      description: 'The doc query to execute',
       type: StringParam,
       required: true
     },
@@ -36,12 +36,12 @@ const QuerySpec: IQuerySpec = {
   output: { }
 }
 
-export type QueryConfig = ActionConfig<typeof QuerySpec['parameters']>
+export type FireConfig = ActionConfig<typeof FirestoreSpec['parameters']>
 
-export class QueryAction extends ActionBase<IQuerySpec> {
-  spec = QuerySpec
+export class FirestoreAction extends ActionBase<IFirestoreSpec> {
+  spec = FirestoreSpec
 
-  constructor (config: ActionConfig<IQuerySpec['parameters']>) {
+  constructor (config: ActionConfig<IFirestoreSpec['parameters']>) {
     super(config)
     console.log('ayyy')
   }

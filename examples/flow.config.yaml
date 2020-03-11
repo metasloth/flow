@@ -1,5 +1,8 @@
 settings:
-  gcp_project: ygrene
+  gcp_project: flowexample
+  realtime_db_path: /flow
+  firestore_path: /flow
+
 
 actions:
   simple_query:
@@ -7,3 +10,53 @@ actions:
     sql_file: simple_query
 
 flows:
+  name: foo
+  entry: first_decision
+  context:
+    foobar: hey
+    barfoo: 122
+  flow:
+    step_01:
+      name: my flow action
+      on_success:
+        - step_02
+        - setp_03
+      on_invalid:
+        - error
+      on_error:
+        - error
+        - step_04
+      on_
+      default_error: some_action
+      decision:
+        conditionsMetAction: some_action | second_condition
+        conditionsFailedAction: error | some_other_action
+        recordRequirements: none | single | multiple | at_least_one
+        contextRequirements:
+          foobar:
+            presence: undefined | defined
+            type: string | number | boolean
+            conditionals:
+              conditional_group:
+                groupType: AND | OR
+                conditions:
+                  - operator: == | >= | > | < | !=
+                    value: something | context::value
+    secoond_decision:
+      conditionsMetAction: some_action
+      conditionsFailedAction: some_other_action
+      recordRequirements: none | single | multiple | at_least_one
+      contextRequirements:
+        foobar:
+          presence: undefined | defined
+          type: string | number | boolean
+          conditionals:
+            conditional_group:
+              groupType: AND | OR
+              conditions:
+                - operator: == | >= | > | < | !=
+                  value: something | context::value
+
+
+
+
